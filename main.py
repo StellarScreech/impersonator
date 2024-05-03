@@ -1,13 +1,13 @@
 import os
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, MessageHandler, filters
 
 # Load the fine-tuned language model
-model = GPT2LMHeadModel.from_pretrained('path/to/fine-tuned-model')
-tokenizer = GPT2Tokenizer.from_pretrained('path/to/fine-tuned-model')
+model = GPT2LMHeadModel.from_pretrained('path')
+tokenizer = GPT2Tokenizer.from_pretrained('path')
 
 # Set up the Telegram bot
-updater = Updater(token='YOUR_BOT_TOKEN', use_context=True)
+updater = Updater(token='7001975986:AAHI5xGjffk6kpVGZWqxvk9IL7ADlm4RtsQ', use_context=True)
 dispatcher = updater.dispatcher
 
 def start(update, context):
@@ -23,7 +23,7 @@ def imitate(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text=output_text)
 
 start_handler = CommandHandler('start', start)
-message_handler = MessageHandler(Filters.text & ~Filters.command, imitate)
+message_handler = MessageHandler(filters.text & ~filters.command, imitate)
 
 dispatcher.add_handler(start_handler)
 dispatcher.add_handler(message_handler)
